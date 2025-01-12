@@ -1,2 +1,10 @@
 ### list tasks
 GET http://localhost:8080/tasks
+
+### create task
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+    "name": "Tarefa 2"
+}

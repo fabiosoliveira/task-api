@@ -11,6 +11,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /tasks", controller.TasksHandler(task.GetTasks))
+	mux.HandleFunc("POST /tasks", controller.CreateTasksHandler(task.AddTask))
 
 	http.ListenAndServe(":8080", mux)
 }

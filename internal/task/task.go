@@ -15,6 +15,16 @@ func GetTasks() []Task {
 	return tasks
 }
 
+func GetTaskById(id int) (Task, error) {
+	for _, t := range tasks {
+		if id == t.ID {
+			return t, nil
+		}
+	}
+
+	return Task{}, fmt.Errorf("task with ID %d not found", id)
+}
+
 func AddTask(name string) Task {
 	lastId++
 	task := Task{ID: lastId, Name: name}

@@ -22,7 +22,7 @@ Task API é uma aplicação simples para gerenciar tarefas, construída com Go. 
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/seu-usuario/task-api.git
+    git clone https://github.com/fabiosoliveira/task-api.git
     ```
 2. Navegue até o diretório do projeto:
     ```sh

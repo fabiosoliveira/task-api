@@ -16,3 +16,6 @@ Content-Type: application/json
 {
     "name": "Tarefa 1546"
 }
+
+### delete task
+DELETE http://localhost:8080/tasks/1

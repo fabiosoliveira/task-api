@@ -15,11 +15,21 @@ func GetTasks() []Task {
 	return tasks
 }
 
-func GetTaskById(id int) (Task, error) {
-	for _, t := range tasks {
+func findTaskById(id int) int {
+	for i, t := range tasks {
 		if id == t.ID {
-			return t, nil
+			return i
 		}
+	}
+
+	return -1
+}
+
+func GetTaskById(id int) (Task, error) {
+
+	index := findTaskById(id)
+	if index != -1 {
+		return tasks[index], nil
 	}
 
 	return Task{}, fmt.Errorf("task with ID %d not found", id)
@@ -33,22 +43,20 @@ func AddTask(name string) Task {
 }
 
 func UpdateTask(id int, name string) error {
-	for i, t := range tasks {
-		if id == t.ID {
-			tasks[i].Name = name
-			return nil
-		}
+	index := findTaskById(id)
+	if index != -1 {
+		tasks[index].Name = name
+		return nil
 	}
 
 	return fmt.Errorf("task with ID %d not found", id)
 }
 
 func RemoveTask(id int) error {
-	for i, t := range tasks {
-		if id == t.ID {
-			tasks = append(tasks[:i], tasks[i+1:]...)
-			return nil
-		}
+	index := findTaskById(id)
+	if index != -1 {
+		tasks = append(tasks[:index], tasks[index+1:]...)
+		return nil
 	}
 
 	return fmt.Errorf("task with ID %d not found", id)

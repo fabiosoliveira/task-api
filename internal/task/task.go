@@ -32,3 +32,14 @@ func UpdateTask(id int, name string) error {
 
 	return fmt.Errorf("task with ID %d not found", id)
 }
+
+func RemoveTask(id int) error {
+	for i, t := range tasks {
+		if id == t.ID {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			return nil
+		}
+	}
+
+	return fmt.Errorf("task with ID %d not found", id)
+}

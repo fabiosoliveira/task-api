@@ -8,3 +8,11 @@ Content-Type: application/json
 {
     "name": "Tarefa 2"
 }
+
+### update task
+PUT http://localhost:8080/tasks/3
+Content-Type: application/json
+
+{
+    "name": "Tarefa 1546"
+}

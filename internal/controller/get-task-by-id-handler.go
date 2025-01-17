@@ -17,7 +17,10 @@ func GetTaskByIdHandler(getTaskById func(id int) (task.Task, error)) http.Handle
 			return
 		}
 
+		mu.RLock()
 		t, err := getTaskById(id)
+		mu.RUnlock()
+
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusNotFound)
 			return

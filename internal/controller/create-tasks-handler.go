@@ -27,7 +27,10 @@ func CreateTasksHandler(addTask func(name string) task.Task) http.HandlerFunc {
 			return
 		}
 
+		mu.Lock()
 		newTask = addTask(newTask.Name)
+		mu.Unlock()
+
 		w.WriteHeader(http.StatusCreated)
 		json.NewEncoder(w).Encode(newTask)
 	}

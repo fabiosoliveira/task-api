@@ -35,7 +35,10 @@ func UpdateTaskHandler(updateTask func(id int, name string) error) http.HandlerF
 			return
 		}
 
+		mu.Lock()
 		err = updateTask(id, task.Name)
+		mu.Unlock()
+
 		if err != nil {
 			http.Error(w, fmt.Sprintf("task with ID %d not found", id), http.StatusNotFound)
 			return

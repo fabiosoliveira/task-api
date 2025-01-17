@@ -25,21 +25,21 @@ func findTaskById(id int) int {
 	return -1
 }
 
-func GetTaskById(id int) (Task, error) {
+func GetTaskById(id int) (*Task, error) {
 
 	index := findTaskById(id)
 	if index != -1 {
-		return tasks[index], nil
+		return &tasks[index], nil
 	}
 
-	return Task{}, fmt.Errorf("task with ID %d not found", id)
+	return &Task{}, fmt.Errorf("task with ID %d not found", id)
 }
 
-func AddTask(name string) Task {
+func AddTask(name string) *Task {
 	lastId++
 	task := Task{ID: lastId, Name: name}
 	tasks = append(tasks, task)
-	return task
+	return &task
 }
 
 func UpdateTask(id int, name string) error {

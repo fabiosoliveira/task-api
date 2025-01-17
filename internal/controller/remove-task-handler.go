@@ -14,7 +14,10 @@ func RemoveTaskHandler(removeTask func(id int) error) http.HandlerFunc {
 			return
 		}
 
+		mu.Lock()
 		err = removeTask(id)
+		mu.Unlock()
+
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusNotFound)
 			return
